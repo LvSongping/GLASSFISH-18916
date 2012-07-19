@@ -1,0 +1,35 @@
+Index: ApplicationLifecycle.java
+===================================================================
+--- ApplicationLifecycle.java	(revision 108945)
++++ ApplicationLifecycle.java	(working copy)
+@@ -59,6 +59,7 @@
+ import org.glassfish.internal.deployment.DeploymentTracing;
+ import org.glassfish.server.ServerEnvironmentImpl;
+ import com.sun.enterprise.config.serverbeans.*;
++
+ import org.jvnet.hk2.annotations.Optional;
+ import org.jvnet.hk2.config.types.Property;
+ import org.glassfish.api.admin.config.ApplicationName;
+@@ -163,6 +164,9 @@
+ 
+     @Inject
+     ConfigSupport configSupport;
++    
++    @Inject
++    Applications apps;
+ 
+     protected Logger logger = LogDomains.getLogger(AppServerStartup.class, LogDomains.CORE_LOGGER);
+     final private static LocalStringManagerImpl localStrings = new LocalStringManagerImpl(ApplicationLifecycle.class);      
+@@ -1945,7 +1949,12 @@
+         } else {
+             if (referencedTargets.size() == 1 && 
+                 referencedTargets.contains(target)) {
++            	Application application = apps.getModule(Application.class, name);
++            	if(application.isLifecycleModule()){
++            		 throw new IllegalArgumentException(localStrings.getLocalString("redeploy_on_specify_targets", "Keys cannot be duplicate. Old value of this key property,null will be retained. ")); 
++            	}else{
+                 return;
++            	}
+             } else {
+                 if (!DeploymentUtils.isDomainTarget(target)) {
+                     throw new IllegalArgumentException(localStrings.getLocalString("redeploy_on_multiple_targets", "Application {0} is referenced by more than one targets. Please remove other references or specify all targets (or domain target if using asadmin command line) before attempting redeploy operation.", name)); 

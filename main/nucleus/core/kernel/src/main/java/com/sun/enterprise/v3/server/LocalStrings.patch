@@ -1,0 +1,12 @@
+Index: LocalStrings.properties
+===================================================================
+--- LocalStrings.properties	(revision 108945)
++++ LocalStrings.properties	(working copy)
+@@ -53,6 +53,7 @@
+ use.create_app_ref=Application {0} is already deployed on other targets. Please use create-application-ref command to create application reference on target {1}
+ use.create_app_ref_2=Application {0} is already deployed in this domain. Please use create-application-ref command to create application reference on target {1}
+ redeploy_on_multiple_targets=Application {0} is referenced by more than one targets. Please remove other references or specify all targets (or domain target if using asadmin command line) before attempting redeploy operation
++redeploy_on_specify_targets=Keys cannot be duplicate. Old value of this key property,null will be retained
+ undeploy_on_multiple_targets=Application {0} is referenced by more than one targets. Please remove other references or specify all targets (or domain target if using asadmin command line) before attempting undeploy operation.
+ delete_lifecycle_on_multiple_targets=Lifecycle module {0} is referenced by more than one targets. Please remove other references before attempting delete operation.
+ cannot_specify_managed_target=Cannot specify target {0} for the operation. Target {0} is a managed target
