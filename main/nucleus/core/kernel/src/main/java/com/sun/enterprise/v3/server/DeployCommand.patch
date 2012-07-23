@@ -1,0 +1,24 @@
+Index: DeployCommand.java
+===================================================================
+--- DeployCommand.java	(revision 55162)
++++ DeployCommand.java	(working copy)
+@@ -600,7 +600,10 @@
+         {
+             //preserve settings first before undeploy
+             Application app = apps.getModule(Application.class, name);
+-
++            if (app.isLifecycleModule()){
++            	 throw new IllegalArgumentException(localStrings.getLocalString("redeploy_on_specify_targets", "Lifecycle module {0} is already created on this target", name)); 
++            }
++            else{
+             // we save some of the old registration information in our deployment parameters
+             settingsFromDomainXML(app);
+ 
+@@ -636,6 +639,7 @@
+             inv.parameters(parameters).execute();
+             return subReport.getExtraProperties();
+         }
++		}
+         return null;
+     }
+ 
