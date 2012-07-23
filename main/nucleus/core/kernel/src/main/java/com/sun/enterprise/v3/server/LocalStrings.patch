@@ -1,12 +1,23 @@
 Index: LocalStrings.properties
 ===================================================================
---- LocalStrings.properties	(revision 108945)
+--- LocalStrings.properties	(revision 55162)
 +++ LocalStrings.properties	(working copy)
-@@ -53,6 +53,7 @@
- use.create_app_ref=Application {0} is already deployed on other targets. Please use create-application-ref command to create application reference on target {1}
- use.create_app_ref_2=Application {0} is already deployed in this domain. Please use create-application-ref command to create application reference on target {1}
- redeploy_on_multiple_targets=Application {0} is referenced by more than one targets. Please remove other references or specify all targets (or domain target if using asadmin command line) before attempting redeploy operation
-+redeploy_on_specify_targets=Keys cannot be duplicate. Old value of this key property,null will be retained
- undeploy_on_multiple_targets=Application {0} is referenced by more than one targets. Please remove other references or specify all targets (or domain target if using asadmin command line) before attempting undeploy operation.
- delete_lifecycle_on_multiple_targets=Lifecycle module {0} is referenced by more than one targets. Please remove other references before attempting delete operation.
- cannot_specify_managed_target=Cannot specify target {0} for the operation. Target {0} is a managed target
+@@ -138,8 +138,10 @@
+ application.alreadyreg=Application with name [{0}] is already deployed
+ application.notreg=Application with name [{0}] is not deployed
+ lifecycle.alreadyreg=Lifecycle module {0} is already created on this target {1}
++Application.alreadyreg=Application module {0} is  created on this target {1},please pick up a different name for the Lifecycle module on target {1}
+ lifecycle.use.create_app_ref_2=Lifecycle module {0} is already created in this domain. Please use create application ref to create application reference on target {1}
+ use.create_app_ref=Lifecycle module {0} is already referenced by other target(s). Please use create application ref to create application reference on target {1}
++Application.use.create_app_ref=Application module {0} is  referenced by other target(s). please pick up a different name for the Lifecycle module  on target {1}
+ lifecycle.notreg=Lifecycle module with name [{0}] does not exist
+ ref.not.referenced.target=Application {0} is not deployed on this target [{1}]
+ lifecycle.not.referenced.target=Lifecycle module {0} is not deployed on this target [{1}]
+@@ -151,6 +153,7 @@
+ invalidconfig=invalid domain.xml entries, please file a bug
+ nocontainer=No container services registered, done...
+ unknownmoduletpe=Module type not recognized
++redeploy_on_specify_targets=Lifecycle module {0} is already created on this target
+ 
+ appref.already.exists=Application reference {0} already exists in target {1}.
+ appref.not.exists=Target {1} does not have a reference to application {0}.
